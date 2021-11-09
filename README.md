@@ -1,4 +1,4 @@
-# task № 1
+# Task № 1
 
 1st test task from Artem Zaitcev. 
 
