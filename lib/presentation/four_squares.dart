@@ -13,7 +13,6 @@ class FourSquares extends StatefulWidget{
 
 class _FourSquares extends State<FourSquares>{
   List<Color> colors = List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
-  List<Alignment> align = [Alignment.topLeft,Alignment.topRight,Alignment.bottomLeft,Alignment.bottomRight];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;

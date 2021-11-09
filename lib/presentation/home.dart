@@ -23,7 +23,7 @@ class _HomePage extends State<HomePage>{
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             rawCard('4 квадрата',()=>Navigator.pushNamed(context, '/foursquares')),
-            rawCard('Цветной список',(){}),
+            rawCard('Цветной список',()=>Navigator.pushNamed(context, '/colorlist')),
             rawCard('Codelab',(){}),
             rawCard('Асинхронный запрос',(){}),
           ],
