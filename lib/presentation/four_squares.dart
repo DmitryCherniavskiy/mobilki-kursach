@@ -23,14 +23,14 @@ class _FourSquares extends State<FourSquares>{
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.white)
+          backgroundColor: MaterialStateProperty.all(Colors.black)
         ),
         onPressed: ()=>setState((){
           colors=List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
         }),
         child: const Icon(
             Icons.palette_outlined,
-            color: Colors.black
+            color: Colors.white
         ),
       ),
       body: Column(

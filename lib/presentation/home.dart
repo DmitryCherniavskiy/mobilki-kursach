@@ -39,19 +39,19 @@ Widget rawCard(String text,onPressed){
       padding: const EdgeInsets.only(bottom: 15),
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
-        splashColor: Colors.grey,
-        highlightColor: Colors.grey,
+        splashColor: Colors.black,
+        highlightColor: Colors.black,
         child: Container(
           width: double.infinity,
           height: 70,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.grey.withOpacity(0.15)
+              color: Colors.black.withOpacity(0.15)
           ),
           child: Card(
             color: Colors.white,
             elevation: 30.0,
-            shadowColor: Colors.grey.withOpacity(0.3),
+            shadowColor: Colors.black.withOpacity(0.3),
             child: Row(
               children: [
                 Padding(
