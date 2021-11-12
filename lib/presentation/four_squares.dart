@@ -11,15 +11,16 @@ class FourSquares extends StatefulWidget{
   }
 }
 
+// TODO: Во-первых: отделяй пустыми строками логически связанные куски кода - методы от полей, последовтельности действий внутри функции и тд.
 class _FourSquares extends State<FourSquares>{
-  List<Color> colors = List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
+  List<Color> colors = List.generate(4, (index) => Color(Random().nextInt(0xffffffff))); //TODO: это лучше вынести в метод: так как ты дублируешь этот код в кнопке.
   List<Alignment> align = [Alignment.topLeft,Alignment.topRight,Alignment.bottomLeft,Alignment.bottomRight];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: rawAppBar(height, '4 квадрата'),
+      appBar: rawAppBar(height, '4 квадрата'), //TODO: достаточно просто использовать обычный аппбар. (если по высоте проблемы, ничего страшного).  Но если делать кастомные, то как виджет.
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: ElevatedButton(
         style: ButtonStyle(
@@ -62,10 +63,11 @@ class RawSquare extends StatelessWidget{
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10), // у тебя слишком большое расстояние между квадратами получится. В дизайне 10, у тебя в сумме 20. Отступы лучше сжелать через SizedBox внутри Row/Column
       child: Container(
-        width: width*0.4,
+        width: width*0.4, //Так как мы не обсуждали, насколько дизайн должен быть резиновым, можно просто было задать конкретные развмеры.
         height: width*0.4,
+        // Вроде в дизайне квадраты без скруглений и тени?
         decoration: BoxDecoration(
           boxShadow:[
             BoxShadow(
