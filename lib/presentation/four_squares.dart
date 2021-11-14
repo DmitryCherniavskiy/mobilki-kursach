@@ -11,30 +11,20 @@ class FourSquares extends StatefulWidget{
   }
 }
 
-
-
 class _FourSquares extends State<FourSquares>{
-
-  late List<Color> colors;
-  List<Alignment> align = [Alignment.topLeft,Alignment.topRight,Alignment.bottomLeft,Alignment.bottomRight];
-
-  @override initState(){
-    setColors();
-  super.initState();
-  }
-
+  List<Color> colors = List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const RawAppBar(title: '4 квадрата'),
+      appBar: const RawAppBar(title:'4 квадрата'),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.black)
         ),
         onPressed: ()=>setState((){
-          setColors();
+          colors=List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
         }),
         child: const Icon(
             Icons.palette_outlined,
@@ -60,9 +50,6 @@ class _FourSquares extends State<FourSquares>{
     );
   }
 
-  setColors(){
-    colors = List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
-  }
 }
 
 class RawSquare extends StatelessWidget{
@@ -73,11 +60,20 @@ class RawSquare extends StatelessWidget{
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
       child: Container(
-        width: width*0.4, //Так как мы не обсуждали, насколько дизайн должен быть резиновым, можно просто было задать конкретные развмеры.
+        width: width*0.4,
         height: width*0.4,
         decoration: BoxDecoration(
+          boxShadow:[
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 2.5,
+              spreadRadius: 1.5,
+              offset: Offset(3, 3)
+            )
+          ],
+            borderRadius: BorderRadius.circular(width*0.05),
             color: color
         ),
       ),
