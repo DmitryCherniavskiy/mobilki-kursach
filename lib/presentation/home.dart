@@ -14,7 +14,7 @@ class _HomePage extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: RawAppBar(title: 'Главная'),
+      appBar: const RawAppBar(title: 'Главная'),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
@@ -24,7 +24,7 @@ class _HomePage extends State<HomePage>{
             rawCard('4 квадрата',()=>Navigator.pushNamed(context, '/foursquares')),
             rawCard('Цветной список',(){}),
             rawCard('Codelab',()=>Navigator.pushNamed(context, '/codelab')),
-            rawCard('Асинхронный запрос',(){}),
+            rawCard('Асинхронный запрос',()=>Navigator.pushNamed(context, '/asynccall')),
           ],
         ),
       ),
