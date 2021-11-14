@@ -21,6 +21,7 @@ class _AsyncCall extends State<AsyncCall>{
     await Dio().get(baseUrl).then(
             (response){
               widget.listPhotos=response.data;
+              print(response.data);
             }
     );
   }
