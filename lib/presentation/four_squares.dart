@@ -65,15 +65,6 @@ class RawSquare extends StatelessWidget{
         width: width*0.4,
         height: width*0.4,
         decoration: BoxDecoration(
-          boxShadow:[
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 2.5,
-              spreadRadius: 1.5,
-              offset: Offset(3, 3)
-            )
-          ],
-            borderRadius: BorderRadius.circular(width*0.05),
             color: color
         ),
       ),
