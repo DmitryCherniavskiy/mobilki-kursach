@@ -23,8 +23,8 @@ class _HomePage extends State<HomePage>{
           children: [
             rawCard('4 квадрата',()=>Navigator.pushNamed(context, '/foursquares')),
             rawCard('Цветной список',()=>Navigator.pushNamed(context, '/colorlist')),
-            rawCard('Codelab',(){}),
-            rawCard('Асинхронный запрос',(){}),
+            rawCard('Codelab',()=>Navigator.pushNamed(context, '/codelab')),
+            rawCard('Асинхронный запрос',()=>Navigator.pushNamed(context, '/asynccall')),
           ],
         ),
       ),
