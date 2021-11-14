@@ -48,6 +48,7 @@ class _AsyncCall extends State<AsyncCall>{
                 Image.network(widget.listPhotos[index]['url']),
                 Container(
                     color: Colors.blue,
+                    width: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                     child:Text(
                       '${widget.listPhotos[index]['title']}',
