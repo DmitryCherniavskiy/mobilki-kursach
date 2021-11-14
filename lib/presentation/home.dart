@@ -13,9 +13,8 @@ class HomePage extends StatefulWidget{
 class _HomePage extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: rawAppBar(height, 'Главная'),
+      appBar: RawAppBar(title: 'Главная'),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
@@ -24,7 +23,7 @@ class _HomePage extends State<HomePage>{
           children: [
             rawCard('4 квадрата',()=>Navigator.pushNamed(context, '/foursquares')),
             rawCard('Цветной список',(){}),
-            rawCard('Codelab',(){}),
+            rawCard('Codelab',()=>Navigator.pushNamed(context, '/codelab')),
             rawCard('Асинхронный запрос',(){}),
           ],
         ),
