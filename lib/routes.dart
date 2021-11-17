@@ -8,7 +8,7 @@ import 'package:task1/presentation/home.dart';
 var routes = {
   '/': (BuildContext context) => const HomePage(),
   '/foursquares': (BuildContext context) => const FourSquares(),
-  '/colorlist': (BuildContext context) => ColorList(),
+  '/colorlist': (BuildContext context) => const ColorList(),
   '/codelab': (BuildContext context) => InfiniteListView(),
-  '/asynccall': (BuildContext context) => AsyncCall(),
+  '/asynccall': (BuildContext context) => const AsyncCall(),
 };

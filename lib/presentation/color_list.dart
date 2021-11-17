@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'components/raw_appbar.dart';
 
 class ColorList extends StatefulWidget {
+  const ColorList({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ColorListState();
@@ -52,7 +54,7 @@ class RawListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Container(
         width: double.infinity,
         height: 65,
