@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-class InfiniteListView extends StatefulWidget{
-
+class InfiniteListView extends StatefulWidget {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18);
   final _saved = <WordPair>{};
@@ -11,13 +10,11 @@ class InfiniteListView extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    return _InfiniteListView();
+    return _InfiniteListViewState();
   }
-
-
 }
 
-class _InfiniteListView extends State<InfiniteListView>{
+class _InfiniteListViewState extends State<InfiniteListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,16 +44,16 @@ class _InfiniteListView extends State<InfiniteListView>{
             widget._suggestions.addAll(generateWordPairs().take(10));
           }
           return _buildRow(widget._suggestions[index]);
-        }
-    );
+        });
   }
+
   void _pushSaved() {
     Navigator.of(context).push(
       // Add lines from here...
       MaterialPageRoute<void>(
         builder: (context) {
           final tiles = widget._saved.map(
-                (pair) {
+            (pair) {
               return ListTile(
                 title: Text(
                   pair.asPascalCase,
@@ -67,9 +64,9 @@ class _InfiniteListView extends State<InfiniteListView>{
           );
           final divided = tiles.isNotEmpty
               ? ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList()
+                  context: context,
+                  tiles: tiles,
+                ).toList()
               : <Widget>[];
 
           return Scaffold(
@@ -82,6 +79,7 @@ class _InfiniteListView extends State<InfiniteListView>{
       ), // ...to here.
     );
   }
+
   Widget _buildRow(WordPair pair) {
     final alreadySaved = widget._saved.contains(pair);
     return ListTile(
@@ -94,7 +92,8 @@ class _InfiniteListView extends State<InfiniteListView>{
         color: alreadySaved ? Colors.red : null,
         semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
       ),
-      onTap: () {      // NEW lines from here...
+      onTap: () {
+        // NEW lines from here...
         setState(() {
           if (alreadySaved) {
             widget._saved.remove(pair);
@@ -102,11 +101,10 @@ class _InfiniteListView extends State<InfiniteListView>{
             widget._saved.add(pair);
           }
         });
-      },               // ... to here.
+      }, // ... to here.
     );
   }
 }
-
 
 class RandomWords extends StatefulWidget {
   const RandomWords({Key? key}) : super(key: key);
@@ -118,7 +116,7 @@ class RandomWords extends StatefulWidget {
 class _RandomWordsState extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();      // NEW
+    final wordPair = WordPair.random(); // NEW
     return Text(wordPair.asPascalCase);
   }
 }

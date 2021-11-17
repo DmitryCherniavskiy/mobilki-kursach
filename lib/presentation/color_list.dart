@@ -3,57 +3,62 @@ import 'package:flutter/material.dart';
 
 import 'components/raw_appbar.dart';
 
-class ColorList extends StatefulWidget{
+class ColorList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ColorList();
+    return _ColorListState();
   }
 }
 
-class _ColorList extends State<ColorList>{
+class _ColorListState extends State<ColorList> {
+  static const int sizeOfList = 1000;
+  late final List<Color> colors;
+
+  @override
+  initState() {
+    colors = generateList(sizeOfList);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    const int sizeOfList=100;
-    List<Color> colors = List.generate(sizeOfList, (index) => Color(Random().nextInt(0xffffffff)));
     return Scaffold(
-      appBar: const RawAppBar(title:'Цветной список'),
+      appBar: const RawAppBar(title: 'Цветной список'),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.black)
-          ),
-          onPressed: ()=>setState((){
-            colors=List.generate(4, (index) => Color(Random().nextInt(0xffffffff)));
-          }),
-          child: const Icon(
-              Icons.palette_outlined,
-              color: Colors.white
-          ),
-        ),
-      body: ListView.builder(
-        itemCount: sizeOfList,
-          itemBuilder: (context,index)=>RawListContainer(color: colors[index])
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.black)),
+        onPressed: () => setState(() {
+          colors = generateList(sizeOfList);
+        }),
+        child: const Icon(Icons.palette_outlined, color: Colors.white),
       ),
+      body: ListView.builder(
+          itemCount: sizeOfList,
+          itemBuilder: (context, index) =>
+              RawListContainer(color: colors[index])),
     );
+  }
+
+  List<Color> generateList(int sizeOfList) {
+    return List.generate(
+        sizeOfList, (index) => Color(Random().nextInt(0xffffffff)));
   }
 }
 
-class RawListContainer extends StatelessWidget{
+class RawListContainer extends StatelessWidget {
   final Color color;
-  const RawListContainer({Key? key,required this.color}) : super(key: key);
+  const RawListContainer({Key? key, required this.color}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal:20,vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Container(
         width: double.infinity,
         height: 65,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: color
-        ),
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.circular(8), color: color),
       ),
     );
   }
-
 }
