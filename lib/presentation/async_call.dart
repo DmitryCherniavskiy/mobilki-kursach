@@ -16,10 +16,11 @@ class AsyncCall extends StatefulWidget {
 }
 
 class _AsyncCallState extends State<AsyncCall> {
-  late ScreenState state = ScreenState.error;
+  ScreenState state=ScreenState.noData;
   List<PhotoResponse> listPhotos = [];
 
-  Future<List> getPhotos() async {
+
+  Future<void> getPhotos() async {
     const baseUrl = 'https://jsonplaceholder.typicode.com/photos';
     try {
       final response = await Dio().get<List>(baseUrl);
@@ -28,7 +29,6 @@ class _AsyncCallState extends State<AsyncCall> {
               .toList() ??
           [];
       listPhotos = parsedData;
-      return listPhotos;
     } catch (e) {
       print(e);
       setState(() {
@@ -47,15 +47,7 @@ class _AsyncCallState extends State<AsyncCall> {
             fixedSize: MaterialStateProperty.all(const Size.square(50)),
             backgroundColor: MaterialStateProperty.all(Colors.black)
           ),
-          onPressed: () async {
-            setState(() {
-              state = ScreenState.loading;
-            });
-            await getPhotos();
-            setState(() {
-              state = ScreenState.loaded;
-            });
-          },
+          onPressed: _onPressed,
           child: const Icon(Icons.edit_outlined, color: Colors.white),
         ),
         body: AsyncCallBody(
@@ -63,6 +55,15 @@ class _AsyncCallState extends State<AsyncCall> {
           state: state,
         ));
   }
+  Future<void> _onPressed() async {
+  setState(() {
+  state = ScreenState.loading;
+  });
+  await getPhotos();
+  setState(() {
+  state = ScreenState.loaded;
+  });
+}
 }
 
 class AsyncCallBody extends StatelessWidget {
@@ -77,7 +78,6 @@ class AsyncCallBody extends StatelessWidget {
     switch (state) {
       case ScreenState.loading:
         {
-          print('loading');
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -93,23 +93,22 @@ class AsyncCallBody extends StatelessWidget {
         }
       case ScreenState.error:
         {
-          print('error');
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Icon(
-                Icons.hourglass_empty,
+                Icons.error,
                 size: 200,
-                color: Colors.white,
+                color: Colors.red,
               ),
               SizedBox(height: 15),
               Text(
-                'Нет данных в текущий момент.\nНажмите на кнопку',
+                'Произошла ошибка.\nПопробуйте еще раз',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 30,
+                    fontSize: 38,
                     fontWeight: FontWeight.bold),
               )
             ],
@@ -117,9 +116,30 @@ class AsyncCallBody extends StatelessWidget {
         }
       case ScreenState.loaded:
         {
-          print('data');
           return RawListPhotos(listPhotos: listPhotos);
         }
+      default: {
+        return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(
+            Icons.hourglass_empty,
+            size: 200,
+            color: Colors.white,
+          ),
+          SizedBox(height: 15),
+          Text(
+            'Нет данных в текущий момент.\nНажмите на кнопку',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
+          )
+        ],
+      );
+      }
     }
   }
 }
