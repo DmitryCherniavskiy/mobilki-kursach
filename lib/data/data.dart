@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'data.g.dart';
 
-enum ScreenState { error, loaded, loading }
+enum ScreenState { error, loaded, loading,noData}
 
 @JsonSerializable()
 class PhotoResponse {

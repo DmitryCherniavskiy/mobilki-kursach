@@ -12,22 +12,40 @@ class RawListPhotos extends StatelessWidget {
         itemCount: listPhotos.length,
         itemBuilder: (BuildContext context, int index) => Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Column(
-            children: [
-              Image.network(listPhotos[index].url),
-              Container(
-                  color: Colors.blue,
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 10),
-                  child: Text(
-                    listPhotos[index].thumbnailUrl,
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.fade,
-                    style: const TextStyle(
-                        fontSize: 18.0, color: Colors.black),
-                  ))
-            ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Stack(
+              alignment:AlignmentDirectional.bottomCenter,
+              children: [
+                Image.network(listPhotos[index].url),
+                Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            stops: [
+                              0.1,
+                              0.5,
+                              0.9
+                            ],
+                            colors: [
+                              Color(0xFF241163),
+                              Color(0xCC241172),
+                              Color(0xCC241347)
+                            ]
+                        )
+                    ),
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Text(
+                      listPhotos[index].thumbnailUrl,
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.fade,
+                      style: const TextStyle(
+                          fontSize: 18.0, color: Colors.black),
+                    )),
+
+              ],
+            ),
           ),
         ));
   }
